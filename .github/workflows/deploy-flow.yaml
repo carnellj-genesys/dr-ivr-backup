@@ -13,7 +13,6 @@ jobs:
       GENESYSCLOUD_REGION: "us-west-2"
       TF_IVR_FAILURE: ${{vars.IVR_FAILURE}}
       TF_IVR_CALLBACK: ${{vars.IVR_CALLBACK}}
-      TF_IVR_FAILURE: ${{vars.IVR_FAILURE}}
       TF_IVR_INITIAL_GREETING: ${{vars.INITIAL_GREETING}}
       TF_PHONE_NUMBER: ${{vars.PHONE_NUMBER}}
       TF_WORKSPACE: "prod-ivr"
