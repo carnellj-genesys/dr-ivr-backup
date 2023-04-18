@@ -14,7 +14,7 @@ jobs:
       TF_WORKSPACE: "prod-ivr"
     steps:
       - uses: actions/checkout@v2   
-      - uses: hashicorp/setup-terraform@v1
+      - uses: hashicorp/setup-terraform@v2
         with:
           cli_config_credentials_token: ${{ secrets.TF_IVR_TOKEN }}
       - run: |
