@@ -1,11 +1,11 @@
 
-name: Genesys Cloud IVR Export and Deploy
+name: Genesys Cloud Failure IVR Deploy
 on:
   push:
     branches: [main]
   workflow_dispatch:
 jobs:
-  export-and-deploy-flow:
+  deploy-flow:
     runs-on: ubuntu-latest
     env:
       GENESYSCLOUD_OAUTHCLIENT_ID: ${{ secrets.GENESYSCLOUD_OAUTHCLIENT_ID_PROD }}
