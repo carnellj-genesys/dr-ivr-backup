@@ -9,7 +9,6 @@ runs:
   using: "composite"
   steps:
     - run: |
-        pip install PureCloudPlatformClientV2
         mkdir output
         mkdir archy
         cd archy
