@@ -19,8 +19,8 @@ jobs:
       - uses: hashicorp/setup-terraform@v1
         with:
           cli_config_credentials_token: ${{ secrets.TF_IVR_TOKEN }}
-      - run:
-          run cd $GITHUB_WORKSPACE/blueprint/terraform
+      - run: |
+          cd $GITHUB_WORKSPACE/blueprint/terraform
           terraform init 
           terraform apply --auto-approve
       #- uses: ./.github/actions/genesys-cloud-publish-archy-flow
