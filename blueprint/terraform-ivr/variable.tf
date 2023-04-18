@@ -1,19 +1,19 @@
-variable "ivrPhoneNumber" {
+variable "ivr_phone_number" {
   type        = string
   description = "Number the IVR is associated with"
 }
 
-variable "ivrInitialGreeting" {
+variable "ivr_initial_greeting" {
   type        = string
   description = "Initial greeting for the IVR"
 }
 
-variable "ivrFailure" {
+variable "ivr_failure" {
   type        = string
   description = "IVR failure message"
 }
 
-variable "ivrCallback" {
+variable "ivr_callback" {
   type        = string
   description = "IVR Callback message"
 }

@@ -11,8 +11,8 @@ resource "genesyscloud_flow" "deploy_ivr_flow" {
     filepath          = "./flows/DR-Emergency-IVR.yaml"
     file_content_hash = filesha256( "./flows/DR-Emergency-IVR.yaml")
     substitutions = {
-      ivr_initial_greeting = "${var.ivrInitialGreeting}"
-      ivr_failure = "${var.ivrFailure}"
-      ivr_callback = "${var.ivrCallback}"
+      ivr_initial_greeting = "${var.ivr_initial_greeting}"
+      ivr_failure = "${var.ivr_failure}"
+      ivr_callback = "${var.ivr_callback}"
     }
 }
