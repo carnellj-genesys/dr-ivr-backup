@@ -15,12 +15,14 @@ jobs:
       #GENESYSCLOUD_ARCHY_REGION: "usw2.pure.cloud"
       TF_WORKSPACE: "prod-ivr"
     steps:
-      - uses: actions/checkout@v2
-      - uses: ./.github/actions/genesys-cloud-dev-tools
+      - uses: actions/checkout@v2   
       - uses: hashicorp/setup-terraform@v1
         with:
           cli_config_credentials_token: ${{ secrets.TF_IVR_TOKEN }}
-      - uses: ./.github/actions/genesys-cloud-apply-terraform
+      - run:
+          run cd $GITHUB_WORKSPACE/blueprint/terraform
+          terraform init 
+          terraform apply --auto-approve
       #- uses: ./.github/actions/genesys-cloud-publish-archy-flow
       #  with:
       #    architect-flow-path: $GITHUB_WORKSPACE/blueprint/genesys-cloud-architect-flows/EmailComprehendFlow.yaml
