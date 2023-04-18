@@ -20,7 +20,7 @@ jobs:
         with:
           cli_config_credentials_token: ${{ secrets.TF_IVR_TOKEN }}
       - run: |
-          cd $GITHUB_WORKSPACE/blueprint/terraform
+          cd blueprint/terraform-ivr
           terraform init 
           terraform apply --auto-approve
       #- uses: ./.github/actions/genesys-cloud-publish-archy-flow
