@@ -1,10 +1,10 @@
 ###
-#  This action installs the Genesys Cloud python SDK and then installs archy.
+#  This action installs the installs archy.
 #  It also adds Archy to the path
 #
 ###
-name: "Setup Genesys Cloud Tools"
-description: "Installs Archy and the Genesys Cloud CLI"
+name: "Setup Archy  Cloud Tools"
+description: "Installs Archy"
 runs:
   using: "composite"
   steps:
