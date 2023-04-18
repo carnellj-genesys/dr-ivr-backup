@@ -1,0 +1,51 @@
+
+name: Genesys Cloud IVR Export and Deploy
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  export-and-deploy-flow:
+    runs-on: ubuntu-latest
+    env:
+      GENESYSCLOUD_OAUTHCLIENT_ID: ${{ secrets.GENESYSCLOUD_OAUTHCLIENT_ID_DEV }}
+      GENESYSCLOUD_OAUTHCLIENT_SECRET: ${{ secrets.GENESYSCLOUD_OAUTHCLIENT_SECRET_DEV }}
+      GENESYSCLOUD_API_REGION: "https://api.usw2.pure.cloud"
+      GENESYSCLOUD_REGION: "us-west-2"
+      GENESYSCLOUD_ARCHY_REGION: "usw2.pure.cloud"
+      TF_WORKSPACE: "dev"
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/genesys-cloud-dev-tools
+      - uses: hashicorp/setup-terraform@v1
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+      - uses: ./.github/actions/genesys-cloud-apply-terraform
+      - uses: ./.github/actions/genesys-cloud-publish-archy-flow
+        with:
+          architect-flow-path: $GITHUB_WORKSPACE/blueprint/genesys-cloud-architect-flows/EmailComprehendFlow.yaml
+          architect-results-path: $GITHUB_WORKSPACE/output/results.json
+      - uses: ./.github/actions/genesys-cloud-create-email-domain-route
+
+  ###
+  #  job: execute-platform-tests
+  #
+  #  The execute-platform-tests job first sets all of the environment variables needed to run our Python script that was written
+  #  to demonstrate how to build a platform test that must past successfully before we deploy to test. Since this is doing nothing
+  #  more then running a python script we are just executing python code "in-line" rather then through a local action.
+  #
+  ###
+  execute-platform-tests:
+    runs-on: ubuntu-latest
+    needs: deploy-email-flow-dev
+    env:
+      GENESYSCLOUD_OAUTHCLIENT_ID: ${{ secrets.GENESYSCLOUD_OAUTHCLIENT_ID_DEV }}
+      GENESYSCLOUD_OAUTHCLIENT_SECRET: ${{ secrets.GENESYSCLOUD_OAUTHCLIENT_SECRET_DEV }}
+      GENESYSCLOUD_REGION: "us-west-2"
+      GENESYSCLOUD_API_REGION: "https://api.usw2.pure.cloud"
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/genesys-cloud-dev-tools
+      - name: Platform tests
+        run: python blueprint/scripts/platform_tests.py
+
