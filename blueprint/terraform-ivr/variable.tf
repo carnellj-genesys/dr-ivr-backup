@@ -19,6 +19,6 @@ variable "ivr_callback" {
 }
 
 variable "ivr_emergency_group_enabled" {
-  type        = boolean
+  type        = bool
   description = "IVR Emergency schedule group status"
 }
