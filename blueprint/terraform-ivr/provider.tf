@@ -4,11 +4,11 @@ terraform {
       source = "mypurecloud/genesyscloud"
     }
   }
-  cloud {
+  backend "remote" {
     organization = "thoughtmechanix"
 
     workspaces {
-      prefix= "ivr_"
+      prefix = "ivr_"
     }
   }
 }
