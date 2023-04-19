@@ -8,7 +8,7 @@ terraform {
     organization = "thoughtmechanix"
 
     workspaces {
-      name = "prod-ivr"
+      prefix= "ivr_"
     }
   }
 }
