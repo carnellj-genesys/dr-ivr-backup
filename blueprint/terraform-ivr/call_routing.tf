@@ -1,6 +1,7 @@
 resource "genesyscloud_architect_emergencygroup" "site_evac_emergency_group" {
   name        = "Site Emergency Group"
   description = "Emergency Group to activare emergency ivr"
+  enabled = var.ivr_emergency_group_enabled
 }
 
 
