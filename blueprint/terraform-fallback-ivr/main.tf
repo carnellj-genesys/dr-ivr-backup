@@ -60,7 +60,7 @@ resource "genesyscloud_flow" "deploy_ivr_flow" {
 
 
 resource "genesyscloud_architect_emergencygroup" "site_evac_emergency_group" {
-  name        = "Site Emergency Group"
+  name        = "Organization Evacuation Emergency Group"
   description = "Emergency Group to activate emergency ivr"
   enabled = var.ivr_emergency_group_enabled
 }

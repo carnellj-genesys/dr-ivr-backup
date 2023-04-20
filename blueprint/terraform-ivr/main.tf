@@ -18,8 +18,8 @@ provider "genesyscloud" {
 }
 
 resource "genesyscloud_architect_emergencygroup" "site_evac_emergency_group" {
-  name        = "Site Emergency Group"
-  description = "Emergency Group to activare emergency ivr"
+  name        = "Organization Evacuation Emergency Group"
+  description = "Emergency Group to activate emergency ivr"
   enabled = var.ivr_emergency_group_enabled
 }
 
@@ -27,7 +27,7 @@ resource "genesyscloud_architect_emergencygroup" "site_evac_emergency_group" {
 resource "genesyscloud_telephony_providers_edges_did_pool" "ivr_phone_number" {
   start_phone_number = "${var.ivr_phone_number}"
   end_phone_number   ="${var.ivr_phone_number}"
-  description        = "DID pool for the  the IVR"
+  description        = "DID pool for the IVR"
   depends_on = [
     genesyscloud_flow.deploy_ivr_flow
   ]
@@ -172,8 +172,6 @@ resource "genesyscloud_routing_queue" "general_help_queue" {
     threshold    = 9
     wait_seconds = 300
   }
-
-  groups= [genesyscloud_group.emergency_group.id]
 }
 
 resource "genesyscloud_flow" "deploy_ivr_flow" {
@@ -193,11 +191,4 @@ resource "genesyscloud_flow" "deploy_ivr_flow" {
       ivr_failure = "${var.ivr_failure}"
       ivr_callback = "${var.ivr_callback}"
     }
-}
-
-resource "genesyscloud_group" "emergency_group" {
-  name          = "Emergency Group"
-  description   = "Emergency Group for Supervisors to answer calls in an emergency"
-  type          = "official"
-  visibility    = "public"
 }
