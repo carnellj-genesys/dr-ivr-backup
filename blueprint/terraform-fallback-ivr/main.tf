@@ -47,7 +47,7 @@ resource "genesyscloud_flow" "deploy_ivr_flow" {
     genesyscloud_routing_queue.general_help_queue
   ]
 
-    filepath          = "./flows/DR-Warm-IVR.yaml"
+    filepath          = "./flows/DR-Fallback-IVR.yaml"
     file_content_hash = filesha256( "./flows/DR-Warm-IVR.yaml")
     substitutions = {
       ivr_initial_greeting = "${var.ivr_initial_greeting}"
@@ -87,8 +87,8 @@ resource "genesyscloud_flow" "deploy_ivr_flow" {
     genesyscloud_routing_queue.general_help_queue
   ]
 
-    filepath          = "./flows/DR-Warm-IVR.yaml"
-    file_content_hash = filesha256( "./flows/DR-Warm-IVR.yaml")
+    filepath          = "./flows/DR-FallbackIvr-IVR.yaml"
+    file_content_hash = filesha256( "./flows/DR-Fallback-Ivr.yaml")
     substitutions = {
       ivr_initial_greeting = "${var.ivr_initial_greeting}"
       ivr_failure = "${var.ivr_failure}"
@@ -98,7 +98,7 @@ resource "genesyscloud_flow" "deploy_ivr_flow" {
 
 resource "genesyscloud_group" "emergency_group" {
   name          = "Emergency Group"
-  description   = "Emergency Group for Supervisors to answer calls in an emergency"
+  description   = "Emergency Group for supervisors to answer calls in an emergency"
   type          = "official"
   visibility    = "public"
 }
