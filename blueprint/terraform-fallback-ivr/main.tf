@@ -38,6 +38,8 @@ resource "genesyscloud_routing_queue" "general_help_queue" {
     threshold    = 9
     wait_seconds = 300
   }
+
+   groups= [genesyscloud_group.emergency_group.id]
 }
 
 resource "genesyscloud_flow" "deploy_ivr_flow" {
@@ -71,6 +73,7 @@ resource "genesyscloud_telephony_providers_edges_did_pool" "ivr_phone_number" {
   ]
 }
 
+
 resource "genesyscloud_architect_ivr" "ivr_config" {
   name               = "Configuration for the IVR"
   description        = "A sample IVR configuration is created"
@@ -91,5 +94,20 @@ resource "genesyscloud_flow" "deploy_ivr_flow" {
       ivr_failure = "${var.ivr_failure}"
       ivr_callback = "${var.ivr_callback}"
     }
+}
+
+resource "genesyscloud_group" "emergency_group" {
+  name          = "Emergency Group"
+  description   = "Emergency Group for Supervisors to answer calls in an emergency"
+  type          = "official"
+  visibility    = "public"
+}
+
+
+resource "genesyscloud_group" "emergency_group" {
+  name          = "Emergency Group"
+  description   = "Emergency Group for Supervisors to answer calls in an emergency"
+  type          = "official"
+  visibility    = "public"
 }
 
