@@ -1,6 +1,5 @@
 inboundCall:
   name: DR-Fallback-IVR
-  division: Home0349a372-0480-4879-b98e-8aace58b1bb7
   startUpRef: "/inboundCall/tasks/task[Voicemail Queue_12]"
   defaultLanguage: en-us
   supportedLanguages:
@@ -11,7 +10,7 @@ inboundCall:
         defaultEngine:
           voice: Jill
   initialGreeting:
-    tts: Hello, this is Commonwealth insurance.  Due to an unexpected event we are unable to take your call.  Please leave a voicemail and a representative will call you back in the near future.
+    tts: {{ivr_callback}}
   settingsActionDefaults:
     playAudioOnSilence:
       timeout:
@@ -140,6 +139,6 @@ inboundCall:
                     - playAudio:
                         name: Play Audio
                         audio:
-                          tts: We are sorry, but at this time we are not able to save your voicemail.  Please try to call back at a later date.
+                          tts: {{ivr_failure}}
           - disconnect:
               name: Disconnect
