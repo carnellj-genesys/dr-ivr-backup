@@ -34,8 +34,8 @@ resource "genesyscloud_telephony_providers_edges_did_pool" "ivr_phone_number" {
 }
 
 resource "genesyscloud_architect_ivr" "ivr_config" {
-  name               = "Configuration for the IVR"
-  description        = "A sample IVR configuration is created"
+  name               = "IVR with emergency group"
+  description        = "A sample IVR configuration using an emergency group"
   dnis               = ["${var.ivr_phone_number}","${var.ivr_phone_number}"]
   open_hours_flow_id = genesyscloud_flow.deploy_ivr_flow.id
   depends_on         = [genesyscloud_telephony_providers_edges_did_pool.ivr_phone_number]

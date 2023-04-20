@@ -17,6 +17,9 @@ provider "genesyscloud" {
 
 }
 
+data "genesyscloud_user" "admin_user" {
+  email = "john.carnell@genesys.com"
+}
 
 resource "genesyscloud_routing_queue" "general_help_queue" {
   name                              = "General Help"
@@ -75,8 +78,8 @@ resource "genesyscloud_telephony_providers_edges_did_pool" "ivr_phone_number" {
 
 
 resource "genesyscloud_architect_ivr" "ivr_config" {
-  name               = "Configuration for the IVR"
-  description        = "A sample IVR configuration is created"
+  name               = "Configuration IVR"
+  description        = "An example fallback IVR"
   dnis               = ["${var.ivr_phone_number}","${var.ivr_phone_number}"]
   open_hours_flow_id = genesyscloud_flow.deploy_ivr_flow.id
   depends_on         = [genesyscloud_telephony_providers_edges_did_pool.ivr_phone_number]
@@ -101,6 +104,7 @@ resource "genesyscloud_group" "emergency_group" {
   description   = "Emergency Group for supervisors to answer calls in an emergency"
   type          = "official"
   visibility    = "public"
+  member_ids= [genesyscloud_user.admin_user.id ]
 }
 
 
