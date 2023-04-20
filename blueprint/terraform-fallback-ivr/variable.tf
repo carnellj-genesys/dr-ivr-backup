@@ -3,7 +3,6 @@ variable "ivr_phone_number" {
   description = "Number the IVR is associated with"
 }
 
-
 variable "ivr_callback" {
   type        = string
   description = "Number the IVR is associated with"
@@ -13,7 +12,6 @@ variable "ivr_failure" {
   type        = string
   description = "Number the IVR is associated with"
 }
-
 
 variable "ivr_emergency_group_enabled" {
   type        = bool
