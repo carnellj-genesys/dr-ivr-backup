@@ -84,20 +84,6 @@ resource "genesyscloud_architect_ivr" "ivr_config" {
   depends_on         = [genesyscloud_telephony_providers_edges_did_pool.ivr_phone_number]
 }
 
-resource "genesyscloud_flow" "deploy_ivr_flow" {
-  depends_on = [
-    genesyscloud_routing_queue.general_help_queue
-  ]
-
-    filepath          = "./flows/DR-FallbackIvr-IVR.yaml"
-    file_content_hash = filesha256( "./flows/DR-Fallback-Ivr.yaml")
-    substitutions = {
-      ivr_initial_greeting = "${var.ivr_initial_greeting}"
-      ivr_failure = "${var.ivr_failure}"
-      ivr_callback = "${var.ivr_callback}"
-    }
-}
-
 resource "genesyscloud_group" "emergency_group" {
   name          = "Emergency Group"
   description   = "Emergency Group for supervisors to answer calls in an emergency"
