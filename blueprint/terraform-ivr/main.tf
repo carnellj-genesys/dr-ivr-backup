@@ -201,11 +201,3 @@ resource "genesyscloud_group" "emergency_group" {
   type          = "official"
   visibility    = "public"
 }
-
-
-resource "genesyscloud_group" "emergency_group" {
-  name          = "Emergency Group"
-  description   = "Emergency Group for Supervisors to answer calls in an emergency"
-  type          = "official"
-  visibility    = "public"
-}
