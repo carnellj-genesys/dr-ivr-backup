@@ -50,8 +50,8 @@ resource "genesyscloud_flow" "deploy_ivr_flow" {
     genesyscloud_routing_queue.general_help_queue
   ]
 
-    filepath          = "./flows/DR-Fallback-IVR.yaml"
-    file_content_hash = filesha256( "./flows/DR-Fallback-IVR.yaml")
+    filepath          = "./flows/DR-Fallback-Ivr.yml"
+    file_content_hash = filesha256( "./flows/DR-Fallback-Ivr.yml")
     substitutions = {
       ivr_failure = "${var.ivr_failure}"
       ivr_callback = "${var.ivr_callback}"
