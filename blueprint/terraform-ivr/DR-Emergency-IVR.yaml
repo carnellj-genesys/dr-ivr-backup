@@ -1,6 +1,6 @@
 inboundCall:
   name: DR-Emergency-IVR
-  description: "Example IVR where we fail over to a callback IVR"
+  description: "Example IVR where we fail over to a callback"
   startUpRef: "/inboundCall/tasks/task[Startup Task_42]"
   defaultLanguage: en-us
   supportedLanguages:
